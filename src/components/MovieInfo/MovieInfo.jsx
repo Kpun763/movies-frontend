@@ -1,5 +1,5 @@
 const MovieInfo = ({ movieObj }) => {
-    return ( 
+    return movieObj && ( 
     <div className="flex-item">
         <h4>{movieObj.title}</h4>
         <div>
@@ -13,6 +13,6 @@ const MovieInfo = ({ movieObj }) => {
             </div>
         </div>
     </div> );
-}
+};
  
 export default MovieInfo;
