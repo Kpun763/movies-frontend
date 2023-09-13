@@ -14,27 +14,22 @@ function App() {
     try {
       const response = await axios.get("https://localhost:7251/api/Movies");
       // console.log(response);
-      setMovies (response.data)
+      setMovies(response.data);
     } catch (error) {
       console.warn("Error in fetchMovies request: ", error);
     }
   };
 
   useEffect(() => {
-    fetchMovies()
+    fetchMovies();
   }, []);
-
-  const handleNewMovie = (newMovie) => {
-    const updatedMovies = [...movies, newMovie];
-    setMovies(updatedMovies);
-  };
 
   const selectedMovie = movies[activeIndex];
 
   return (
     <div className="App">
       <Header />
-      
+
       <div className="flex-container">
         <MovieList
           movies={movies}
@@ -42,7 +37,7 @@ function App() {
           setActiveIndex={setActiveIndex}
         />
         <MovieInfo movieObj={selectedMovie} />
-        <NewMovieForm onNewMovie={handleNewMovie} />
+        <NewMovieForm onNewMovie={fetchMovies}/>
       </div>
     </div>
   );
