@@ -6,8 +6,6 @@ import axios from "axios";
 const MovieInfo = ({ movieObj }) => {
   const [flixData, setFlixData] = useState(null);
 
-  console.log("flixData:", flixData);
-
   const fetchFlixData = async () => {
     try {
       const response = await axios.get(
@@ -16,7 +14,7 @@ const MovieInfo = ({ movieObj }) => {
       setFlixData(response.data);
     } catch (error) {
       console.warn("Error fetching flix data in MovieInfo: ", error);
-      setFlixData(null)
+      setFlixData(null);
     }
   };
 
@@ -28,9 +26,11 @@ const MovieInfo = ({ movieObj }) => {
     movieObj && (
       <div className="flex-item">
         <h4>{movieObj.title}</h4>
-       {flixData && <div className="poster-wrapper">
-          <img src={flixData?.poster_url} />
-        </div>}
+        {flixData && (
+          <div className="poster-wrapper">
+            <img src={flixData?.poster_url} />
+          </div>
+        )}
         <div>
           <div className="data-item">
             <span>Running Time</span>
@@ -40,10 +40,12 @@ const MovieInfo = ({ movieObj }) => {
             <span>Genre</span>
             <span>{movieObj.genre}</span>
           </div>
-        {flixData && <div className="data-item">
-            <span>Release Data</span>
-            <span>{flixData?.release_data}</span>
-          </div>}
+          {flixData && (
+            <div className="data-item">
+              <span>Release Data</span>
+              <span>{flixData?.release_data}</span>
+            </div>
+          )}
         </div>
       </div>
     )
